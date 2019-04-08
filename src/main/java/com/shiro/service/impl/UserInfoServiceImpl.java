@@ -6,12 +6,16 @@ import org.springframework.stereotype.Service;
 
 import com.shiro.dao.UserInfoDao;
 import com.shiro.entity.UserInfo;
-import com.shiro.service.UserInfoService;
+import com.shiro.service.UserService;
 
 @Service
-public class UserInfoServiceImpl implements UserInfoService {
+public class UserInfoServiceImpl implements UserService {
+	
 	@Resource
-	private UserInfoDao userInfoDao;
+	private RoleService roleService;
+
+	@Resource
+	private UserService userService;
 
 	@Override
 	public UserInfo findByUsername(String username) {
