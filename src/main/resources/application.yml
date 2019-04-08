@@ -1,3 +1,5 @@
+server:
+  port: 8082
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/shiro?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
@@ -17,9 +19,9 @@ spring:
     mode: HTML
 shiro:
   cas:
-    loginUrl: https://sso.huoli.com/auth/login?service=http://localhost:8080/shiro/login
-    logoutUrl: https://sso.huoli.com/auth/logout?service=http://localhost:8080/shiro/login
-    successUrl: http://localhost:8080/sql-audit
-    failureUrl: https://sso.huoli.com/auth/login?service=http://localhost:8080/shiro/login
-    casServerUrlPrefix: https://sso.huoli.com/auth
-    casService: http://localhost:8080/shiro/login
+    loginUrl: http://localhost:8081/cas/login?service=http://localhost:8082/shiro/login
+    logoutUrl: http://localhost:8081/cas/logout?service=http://localhost:8082/shiro/login
+    successUrl: http://localhost:8082
+    failureUrl: http://localhost:8081/cas/login?service=http://localhost:8082/shiro/login
+    casServerUrlPrefix: http://localhost:8081/cas
+    casService: http://localhost:8082/shiro/login
