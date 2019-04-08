@@ -7,7 +7,6 @@ import java.util.Properties;
 
 import javax.servlet.Filter;
 
-import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cas.CasFilter;
 import org.apache.shiro.cas.CasSubjectFactory;
 import org.apache.shiro.mgt.SecurityManager;
@@ -37,7 +36,7 @@ public class ShiroConfig {
 	private String casService;
 
 	@Bean
-	public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
+	public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
 		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
 
@@ -74,26 +73,11 @@ public class ShiroConfig {
 		return logoutFilter;
 	}
 
-	/**
-	 * 凭证匹配器 （由于我们的密码校验交给Shiro的SimpleAuthenticationInfo进行处理了 ）
-	 * 
-	 * @return
-	 */
-	@Bean
-	public HashedCredentialsMatcher hashedCredentialsMatcher() {
-		HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
-		hashedCredentialsMatcher.setHashAlgorithmName("md5");// 散列算法:这里使用MD5算法;
-		hashedCredentialsMatcher.setHashIterations(2);// 散列的次数，比如散列两次，相当于
-														// md5(md5(""));
-		return hashedCredentialsMatcher;
-	}
-
 	@Bean
 	public MyShiroRealm myShiroRealm() {
 		MyShiroRealm myShiroRealm = new MyShiroRealm();
 		myShiroRealm.setCasServerUrlPrefix(casServerUrlPrefix);
 		myShiroRealm.setCasService(casService);
-		myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
 		return myShiroRealm;
 	}
 

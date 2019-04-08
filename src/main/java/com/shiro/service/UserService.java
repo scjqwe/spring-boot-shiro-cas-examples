@@ -1,8 +1,15 @@
 package com.shiro.service;
 
-import com.shiro.entity.UserInfo;
+import com.shiro.entity.SysUser;
 
 public interface UserService {
-	/** 通过username查找用户信息; */
-	public UserInfo findByUsername(String username);
+	void addUser(SysUser user);
+
+	void deleteUser(int uid);
+
+	void updateUser(SysUser user);
+
+	SysUser getUserByUsername(String username);
+
+	SysUser getUserByUid(int uid);
 }

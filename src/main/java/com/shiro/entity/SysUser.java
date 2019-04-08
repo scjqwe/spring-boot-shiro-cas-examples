@@ -13,7 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class UserInfo implements Serializable {
+public class SysUser implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
